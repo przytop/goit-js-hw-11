@@ -27,6 +27,14 @@ form.addEventListener('submit', evt => {
   evt.preventDefault();
   const searchValue = evt.target.search.value.trim();
 
+  if (searchValue === "") {
+    iziToast.warning({
+      message: 'Complete the field correctly',
+      position: 'topRight',
+    });
+    return;
+  }
+
   gallery.innerHTML = '';
   loadingStart();
   fetchPixabay(searchValue).then(response => {
